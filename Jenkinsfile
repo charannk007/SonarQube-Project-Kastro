@@ -55,13 +55,13 @@ pipeline {
             }
         }
 
-        stage('Docker Push to DockerHub') {
-            steps {
-                script {
-                          sh "docker push $DOCKER_IMAGE"
-                    }
-                }
-            }
+        // stage('Docker Push to DockerHub') {
+        //     steps {
+        //         script {
+        //                   sh "docker push $DOCKER_IMAGE"
+        //             }
+        //         }
+        //     }
         
 
         stage('Run Docker Container') {
