@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven3'
-        jdk 'jdk17'
+        maven 'maven'
+        jdk 'java'
         // Remove the sonarQube line if it still causes issues
     }
 
     environment {
-        SCANNER_HOME = tool 'sonar-scanner'
-        DOCKERHUB_USERNAME = 'kastrov'  // Set this directly to your Docker Hub username
+        SCANNER_HOME = tool 'sonar'
+        DOCKERHUB_USERNAME = 'nkcharan'  
         DOCKER_IMAGE = "${DOCKERHUB_USERNAME}/spotify-app:latest"
     }
 
@@ -34,7 +34,7 @@ pipeline {
 
         stage('Sonar Analysis') {
             steps {
-                withSonarQubeEnv('sonar-server') {
+                withSonarQubeEnv('sonar') {
                     sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Kastro -Dsonar.projectKey=KastroKey -Dsonar.java.binaries=target"
                 }
             }
